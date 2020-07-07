@@ -69,6 +69,16 @@ protected:
 	}
 
 	void controlKeyboard(int iNodeX, int iNodeY) {
+		if (GetKey(olc::R).bHeld) {
+			//reset
+			for (int i = 0; i < iMapWidth; i++)
+				for (int j = 0; j < iMapHeight; j++) {
+					Nodes[j * iMapWidth + i].bOstacle = false;
+				}
+			StartNode = &Nodes[(iMapHeight / 2 * iMapWidth)];
+			EndNode = &Nodes[(iMapHeight / 2 * iMapWidth - 5)];
+
+		}
 
 		if (GetMouse(0).bReleased || (GetMouse(0).bHeld && GetKey(olc::CTRL).bHeld)) {
 			if (iNodeX >= 0 && iNodeX < iMapWidth) {
